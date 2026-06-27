@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Документы — Centaur-Logistic</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero { background: var(--green); padding: 80px 48px 64px; }
+.page-hero .section-tag { color: rgba(255,255,255,0.7); }
+.page-hero .section-tag::before { background: rgba(255,255,255,0.5); }
+.page-hero h1 { color: var(--white); margin-bottom: 16px; }
+.page-hero p { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 560px; }
+
+.docs-section { background: var(--gray); }
+.docs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.doc-card {
+  background: var(--white); border: 2px solid var(--gray-mid);
+  padding: 32px 28px; display: flex; align-items: flex-start; gap: 20px;
+  text-decoration: none; color: inherit; transition: all 0.2s;
+}
+.doc-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,204,68,0.1); }
+.doc-icon { font-size: 2.2rem; flex-shrink: 0; }
+.doc-body { flex: 1; }
+.doc-body h4 { font-family: 'Oswald', sans-serif; font-size: 1.05rem; font-weight: 600; letter-spacing: 0.03em; margin-bottom: 8px; color: var(--text); }
+.doc-body p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; margin-bottom: 12px; }
+.doc-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; background: var(--green-light); color: var(--green-dark); }
+.doc-arrow { font-size: 1.4rem; color: var(--green); align-self: center; flex-shrink: 0; transition: transform 0.2s; }
+.doc-card:hover .doc-arrow { transform: translateY(3px); }
+
+.request-section { background: var(--white); }
+.request-box { background: var(--blue); padding: 56px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.request-box h3 { font-family: 'Oswald', sans-serif; font-size: 2rem; font-weight: 700; color: var(--white); max-width: 500px; line-height: 1.2; }
+.request-box a { background: var(--white); color: var(--blue); font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.06em; padding: 16px 36px; text-decoration: none; flex-shrink: 0; transition: background 0.2s; }
+.request-box a:hover { background: var(--green); color: var(--white); }
+
+@media (max-width: 900px) {
+  .page-hero { padding: 80px 20px 48px; }
+  .request-box { padding: 32px 20px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">CENTAUR <span>-LOGISTIC</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="services.html">Услуги</a></li>
+    <li><a href="calculator.html">Калькулятор</a></li>
+    <li><a href="documents.html" class="active">Документы</a></li>
+    <li><a href="contact.html">Контакты</a></li>
+  </ul>
+  <a href="contact.html" class="btn nav-cta">Запросить КП</a>
+</nav>
+
+<div class="page">
+<div class="page-hero">
+  <div class="inner">
+    <div class="section-tag">Шаблоны и формы</div>
+    <h1>Документы для скачивания</h1>
+    <p>Готовые шаблоны для оформления ВЭД-сделок. Скачайте, заполните и пришлите нам — подготовим полный пакет.</p>
+  </div>
+</div>
+
+<section class="docs-section">
+  <div class="inner">
+    <div class="docs-grid">
+      <a href="#" class="doc-card" onclick="dlDoc(event,'Запрос_КП_Centaur-Logistic.pdf')">
+        <div class="doc-icon">📋</div>
+        <div class="doc-body">
+          <h4>Запрос коммерческого предложения</h4>
+          <p>Форма заявки на расчёт стоимости перевозки. Заполните и отправьте нам — ответим в течение 24 часов.</p>
+          <span class="doc-tag">PDF · Заявка</span>
+        </div>
+        <div class="doc-arrow">↓</div>
+      </a>
+
+      <a href="#" class="doc-card" onclick="dlDoc(event,'Договор_транспортной_экспедиции.docx')">
+        <div class="doc-icon">📝</div>
+        <div class="doc-body">
+          <h4>Договор транспортной экспедиции</h4>
+          <p>Типовой договор ТЭО между экспедитором и клиентом. Шаблон для согласования.</p>
+          <span class="doc-tag">DOCX · Договор</span>
+        </div>
+        <div class="doc-arrow">↓</div>
+      </a>
+
+      <a href="#" class="doc-card" onclick="dlDoc(event,'CMR_Накладная.pdf')">
+        <div class="doc-icon">🚛</div>
+        <div class="doc-body">
+          <h4>CMR-накладная</h4>
+          <p>Международная товарно-транспортная накладная для автомобильных перевозок.</p>
+          <span class="doc-tag">PDF · Накладная</span>
+        </div>
+        <div class="doc-arrow">↓</div>
+      </a>
+
+      <a href="#" class="doc-card" onclick="dlDoc(event,'Чеклист_таможенных_документов.xlsx')">
+        <div class="doc-icon">✅</div>
+        <div class="doc-body">
+          <h4>Чек-лист таможенных документов</h4>
+          <p>Список необходимых документов для импорта в Россию и страны ЕАЭС.</p>
+          <span class="doc-tag">XLSX · Чек-лист</span>
+        </div>
+        <div class="doc-arrow">↓</div>
+      </a>
+
+      <a href="#" class="doc-card" onclick="dlDoc(event,'Требования_упаковки.pdf')">
+        <div class="doc-icon">📦</div>
+        <div class="doc-body">
+          <h4>Требования к упаковке и маркировке</h4>
+          <p>Стандарты упаковки для авто-, авиа- и морских отправок. Обязательно перед отгрузкой.</p>
+          <span class="doc-tag">PDF · Инструкция</span>
+        </div>
+        <div class="doc-arrow">↓</div>
+      </a>
+
+      <a href="#" class="doc-card" onclick="dlDoc(event,'Доверенность_таможенного_представителя.docx')">
+        <div class="doc-icon">🔏</div>
+        <div class="doc-body">
+          <h4>Доверенность таможенного представителя</h4>
+          <p>Шаблон доверенности для оформления грузов в таможне от имени клиента.</p>
+          <span class="doc-tag">DOCX · Доверенность</span>
+        </div>
+        <div class="doc-arrow">↓</div>
+      </a>
+
+      <a href="Презентатсия.pdf" class="doc-card" download>
+        <div class="doc-icon">🎯</div>
+        <div class="doc-body">
+          <h4>Презентация компании</h4>
+          <p>Система предсказуемых поставок — что входит, реализованные кейсы, условия работы.</p>
+          <span class="doc-tag">PDF · Презентация</span>
+        </div>
+        <div class="doc-arrow">↓</div>
+      </a>
+
+      <a href="Практика_реализованных_поставок.pdf" class="doc-card" download>
+        <div class="doc-icon">📊</div>
+        <div class="doc-body">
+          <h4>Практика реализованных поставок</h4>
+          <p>6 детальных кейсов — ДО / ЧТО СДЕЛАЛИ / ПОСЛЕ. Реальные примеры из нашей практики.</p>
+          <span class="doc-tag">PDF · Кейсы</span>
+        </div>
+        <div class="doc-arrow">↓</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="request-section">
+  <div class="inner">
+    <div class="request-box">
+      <h3>Нужен индивидуальный пакет документов?</h3>
+      <a href="contact.html">Связаться с нами →</a>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="footer-logo">CENTAUR <span>-LOGISTIC</span></div>
+  <p>© 2025 ООО Кентавр Логистика · <a href="mailto:v.fomichyov@centaur-log.ru">v.fomichyov@centaur-log.ru</a></p>
+  <p>Стамбул · Москва · <a href="https://kentavr-log.ru">kentavr-log.ru</a></p>
+</footer>
+
+<script>
+function dlDoc(e, name) {
+  e.preventDefault();
+  alert('Файл "'+name+'" будет доступен после публикации.\n\nДля получения документов: v.fomichyov@centaur-log.ru');
+}
+</script>
+</body>
+</html>

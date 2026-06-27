@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Контакты — Centaur-Logistic</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero { background: var(--text); padding: 80px 48px 64px; }
+.page-hero .section-tag { color: rgba(255,255,255,0.5); }
+.page-hero .section-tag::before { background: rgba(255,255,255,0.3); }
+.page-hero h1 { color: var(--white); margin-bottom: 16px; }
+.page-hero p { color: rgba(255,255,255,0.6); font-size: 1.1rem; max-width: 560px; }
+
+.contact-section { background: var(--gray); }
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+
+/* People cards */
+.people { display: flex; flex-direction: column; gap: 24px; }
+.person-card { background: var(--white); border: 2px solid var(--gray-mid); padding: 36px; }
+.person-card:first-child { border-top: 4px solid var(--blue); }
+.person-card:last-child { border-top: 4px solid var(--green); }
+.person-role { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+.person-card:last-child .person-role { color: var(--green-dark); }
+.person-name { font-family: 'Oswald', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.person-location { font-size: 0.85rem; color: var(--text-light); margin-bottom: 24px; }
+.person-contacts { display: flex; flex-direction: column; gap: 14px; }
+.pc-item { display: flex; align-items: center; gap: 14px; }
+.pc-icon { font-size: 1.2rem; flex-shrink: 0; }
+.pc-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); }
+.pc-val { font-size: 0.95rem; font-weight: 500; }
+.pc-val a { color: var(--text); text-decoration: none; }
+.pc-val a:hover { color: var(--blue); }
+
+/* Form */
+.form-wrap { background: var(--white); border: 2px solid var(--gray-mid); padding: 40px; }
+.form-wrap h3 { font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 28px; letter-spacing: 0.03em; }
+.fg { margin-bottom: 20px; }
+.fg label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+.fg input, .fg select, .fg textarea {
+  width: 100%; border: 2px solid var(--gray-mid); background: var(--white);
+  font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--text);
+  padding: 12px 16px; outline: none; resize: none; transition: border-color 0.2s;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--blue); }
+.fg textarea { height: 110px; }
+.fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-submit {
+  width: 100%; background: var(--blue); color: var(--white);
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.1rem;
+  letter-spacing: 0.08em; padding: 18px; border: none; cursor: pointer; transition: background 0.2s;
+}
+.form-submit:hover { background: var(--blue-dark); }
+.form-note { font-size: 0.75rem; color: var(--text-light); margin-top: 12px; }
+
+.success-msg { display: none; background: var(--green-light); border: 2px solid var(--green); padding: 20px; text-align: center; margin-top: 16px; }
+.success-msg.show { display: block; }
+.success-msg p { font-weight: 600; color: var(--green-dark); }
+
+.offices { background: var(--white); }
+.offices-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.office-card { background: var(--gray); padding: 36px; }
+.office-city { font-family: 'Oswald', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
+.office-country { font-size: 0.8rem; color: var(--text-light); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.office-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; }
+
+@media (max-width: 900px) {
+  .page-hero { padding: 80px 20px 48px; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .fg-row { grid-template-columns: 1fr; }
+  .offices-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">CENTAUR <span>-LOGISTIC</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="services.html">Услуги</a></li>
+    <li><a href="calculator.html">Калькулятор</a></li>
+    <li><a href="documents.html">Документы</a></li>
+    <li><a href="contact.html" class="active">Контакты</a></li>
+  </ul>
+  <a href="contact.html" class="btn nav-cta">Запросить КП</a>
+</nav>
+
+<div class="page">
+<div class="page-hero">
+  <div class="inner">
+    <div class="section-tag">Связаться</div>
+    <h1>Обсудим ваш груз</h1>
+    <p>Ответим в течение 24 часов с конкретным предложением под ваш товар и маршрут.</p>
+  </div>
+</div>
+
+<section class="contact-section">
+  <div class="inner">
+    <div class="contact-layout">
+      <div class="people">
+        <div class="person-card">
+          <div class="person-role">Логистика · Россия и СНГ</div>
+          <div class="person-name">Владимир Фомичев</div>
+          <div class="person-location">📍 Москва, Россия</div>
+          <div class="person-contacts">
+            <div class="pc-item">
+              <div class="pc-icon">✉️</div>
+              <div><div class="pc-label">Email</div><div class="pc-val"><a href="mailto:v.fomichyov@centaur-log.ru">v.fomichyov@centaur-log.ru</a></div></div>
+            </div>
+            <div class="pc-item">
+              <div class="pc-icon">💬</div>
+              <div><div class="pc-label">Telegram</div><div class="pc-val"><a href="#">@vladimirfomichev</a></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="person-card">
+          <div class="person-role">Закупки · Турция и ЕС</div>
+          <div class="person-name">Орхан Гюнгер</div>
+          <div class="person-location">📍 Стамбул, Турция</div>
+          <div class="person-contacts">
+            <div class="pc-item">
+              <div class="pc-icon">✉️</div>
+              <div><div class="pc-label">Email</div><div class="pc-val"><a href="mailto:orhan@asentor.com">orhan@asentor.com</a></div></div>
+            </div>
+            <div class="pc-item">
+              <div class="pc-icon">💬</div>
+              <div><div class="pc-label">Telegram / WhatsApp</div><div class="pc-val"><a href="#">@ASENTOR_OFFICIAL</a></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-wrap">
+        <h3>Заявка на перевозку</h3>
+        <div class="fg-row">
+          <div class="fg"><label>Имя</label><input type="text" id="fname" placeholder="Иван Петров"></div>
+          <div class="fg"><label>Компания</label><input type="text" id="fcompany" placeholder="ООО «Компания»"></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label>Телефон</label><input type="tel" id="fphone" placeholder="+7 ..."></div>
+          <div class="fg"><label>Email</label><input type="email" id="femail" placeholder="email@company.ru"></div>
+        </div>
+        <div class="fg">
+          <label>Маршрут</label>
+          <select id="froute">
+            <option>Стамбул → Москва</option>
+            <option>Европа → Россия</option>
+            <option>Европа → Казахстан / СНГ</option>
+            <option>США → Россия / СНГ</option>
+            <option>Китай → Россия / СНГ</option>
+            <option>Другой маршрут</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Описание груза</label>
+          <textarea id="fcargo" placeholder="Наименование товара, вес, объём, особенности..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">ОТПРАВИТЬ ЗАЯВКУ →</button>
+        <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+        <div class="success-msg" id="successMsg">
+          <p>✓ Заявка принята! Свяжемся с вами в течение 24 часов.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offices">
+  <div class="inner">
+    <div class="section-tag">Офисы</div>
+    <h2>Где мы <span class="accent">работаем</span></h2>
+    <div class="offices-grid">
+      <div class="office-card">
+        <div class="office-city">Москва</div>
+        <div class="office-country">Россия</div>
+        <p>Логистика по России и странам СНГ. Таможенное оформление. Координация доставки на склад клиента.</p>
+      </div>
+      <div class="office-card">
+        <div class="office-city">Стамбул</div>
+        <div class="office-country">Турция</div>
+        <p>Закупки из ЕС и США. Консолидация грузов. Собственная структура для работы с европейскими поставщиками.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="footer-logo">CENTAUR <span>-LOGISTIC</span></div>
+  <p>© 2025 ООО Кентавр Логистика · <a href="mailto:v.fomichyov@centaur-log.ru">v.fomichyov@centaur-log.ru</a></p>
+  <p>Стамбул · Москва · <a href="https://kentavr-log.ru">kentavr-log.ru</a></p>
+</footer>
+
+<script>
+function submitForm() {
+  const name = document.getElementById('fname').value;
+  const email = document.getElementById('femail').value;
+  if (!name || !email) { alert('Заполните имя и email'); return; }
+  document.getElementById('successMsg').classList.add('show');
+  document.querySelector('.form-submit').disabled = true;
+  document.querySelector('.form-submit').textContent = '✓ Отправлено';
+}
+</script>
+</body>
+</html>

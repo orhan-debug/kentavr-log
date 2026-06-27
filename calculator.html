@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Калькулятор — Centaur-Logistic</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero { background: var(--blue); padding: 80px 48px 64px; }
+.page-hero .section-tag { color: rgba(255,255,255,0.6); }
+.page-hero .section-tag::before { background: rgba(255,255,255,0.4); }
+.page-hero h1 { color: var(--white); margin-bottom: 16px; }
+.page-hero p { color: rgba(255,255,255,0.75); font-size: 1.1rem; max-width: 560px; }
+
+.calc-section { background: var(--gray); }
+.calc-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+
+.calc-form-wrap { background: var(--white); border: 2px solid var(--gray-mid); padding: 40px; }
+.calc-form-wrap h3 { font-family: 'Oswald', sans-serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 28px; letter-spacing: 0.03em; }
+.fg { margin-bottom: 20px; }
+.fg label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+.fg select, .fg input {
+  width: 100%; border: 2px solid var(--gray-mid); background: var(--white);
+  font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--text);
+  padding: 12px 16px; outline: none; transition: border-color 0.2s;
+}
+.fg select:focus, .fg input:focus { border-color: var(--blue); }
+.fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.calc-submit {
+  width: 100%; background: var(--blue); color: var(--white);
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.1rem;
+  letter-spacing: 0.08em; padding: 18px; border: none; cursor: pointer;
+  transition: background 0.2s; margin-top: 8px;
+}
+.calc-submit:hover { background: var(--blue-dark); }
+
+.calc-right { display: flex; flex-direction: column; gap: 24px; }
+.result-box { background: var(--white); border: 2px solid var(--gray-mid); padding: 36px; display: none; }
+.result-box.show { display: block; border-color: var(--blue); }
+.result-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); margin-bottom: 8px; }
+.result-price { font-family: 'Oswald', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--blue); line-height: 1; margin-bottom: 4px; }
+.result-sub { font-size: 0.8rem; color: var(--text-light); margin-bottom: 24px; }
+.result-rows { display: flex; flex-direction: column; gap: 0; }
+.result-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--gray-mid); font-size: 0.875rem; }
+.result-row:last-child { border-bottom: none; }
+.result-row .k { color: var(--text-mid); }
+.result-row .v { font-weight: 600; color: var(--text); }
+.result-note { font-size: 0.75rem; color: var(--text-light); margin-top: 16px; line-height: 1.6; padding: 12px; background: var(--gray); }
+.result-cta { display: block; width: 100%; background: var(--green); color: var(--white); font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.06em; padding: 14px; text-align: center; text-decoration: none; margin-top: 16px; transition: background 0.2s; }
+.result-cta:hover { background: var(--green-dark); }
+
+.info-cards { display: flex; flex-direction: column; gap: 16px; }
+.info-card { background: var(--white); border: 2px solid var(--gray-mid); padding: 24px; }
+.info-card h4 { font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 10px; color: var(--text); }
+.info-card p { font-size: 0.85rem; color: var(--text-mid); line-height: 1.6; }
+.transit-mini { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 12px; }
+.tm-item { background: var(--gray); padding: 10px; text-align: center; }
+.tm-days { font-family: 'Oswald', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--blue); }
+.tm-route { font-size: 0.68rem; color: var(--text-light); margin-top: 2px; }
+
+@media (max-width: 900px) {
+  .page-hero { padding: 80px 20px 48px; }
+  .calc-layout { grid-template-columns: 1fr; }
+  .fg-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">CENTAUR <span>-LOGISTIC</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="services.html">Услуги</a></li>
+    <li><a href="calculator.html" class="active">Калькулятор</a></li>
+    <li><a href="documents.html">Документы</a></li>
+    <li><a href="contact.html">Контакты</a></li>
+  </ul>
+  <a href="contact.html" class="btn nav-cta">Запросить КП</a>
+</nav>
+
+<div class="page">
+<div class="page-hero">
+  <div class="inner">
+    <div class="section-tag">Онлайн-расчёт</div>
+    <h1>Калькулятор стоимости доставки</h1>
+    <p>Получите ориентировочную стоимость за 30 секунд. Точный расчёт — по запросу КП.</p>
+  </div>
+</div>
+
+<section class="calc-section">
+  <div class="inner">
+    <div class="calc-layout">
+      <div class="calc-form-wrap">
+        <h3>Параметры груза</h3>
+        <div class="fg">
+          <label>Пункт отправления</label>
+          <select id="origin">
+            <option value="">— Выберите —</option>
+            <option value="istanbul">Турция — Стамбул</option>
+            <option value="riga">Латвия — Рига</option>
+            <option value="vilnius">Литва — Вильнюс</option>
+            <option value="warsaw">Польша — Варшава</option>
+            <option value="berlin">Германия — Берлин</option>
+            <option value="milan">Италия — Милан</option>
+            <option value="madrid">Испания — Мадрид</option>
+            <option value="paris">Франция — Париж</option>
+            <option value="beijing">Китай — Пекин/Шанхай</option>
+            <option value="usa">США — любой город</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Пункт назначения</label>
+          <select id="destination">
+            <option value="">— Выберите —</option>
+            <option value="moscow">Россия — Москва</option>
+            <option value="spb">Россия — Санкт-Петербург</option>
+            <option value="ekb">Россия — Екатеринбург</option>
+            <option value="nsk">Россия — Новосибирск</option>
+            <option value="almaty">Казахстан — Алматы</option>
+            <option value="tashkent">Узбекистан — Ташкент</option>
+            <option value="bishkek">Кыргызстан — Бишкек</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Способ доставки</label>
+          <select id="mode">
+            <option value="auto">Автомобиль (FTL/LTL)</option>
+            <option value="avia">Авиа (срочно)</option>
+            <option value="sea">Море + Авто</option>
+          </select>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label>Вес (кг)</label><input type="number" id="weight" placeholder="0" min="0"></div>
+          <div class="fg"><label>Объём (м³)</label><input type="number" id="volume" placeholder="0" step="0.1" min="0"></div>
+        </div>
+        <div class="fg">
+          <label>Тип груза</label>
+          <select id="cargo">
+            <option value="general">Генеральный груз</option>
+            <option value="chemical">Химия / ADR</option>
+            <option value="instrument">Приборы / оборудование</option>
+            <option value="polymer">Полимеры / сырьё</option>
+            <option value="parts">Запчасти / арматура</option>
+          </select>
+        </div>
+        <button class="calc-submit" onclick="calculate()">РАССЧИТАТЬ СТОИМОСТЬ →</button>
+      </div>
+
+      <div class="calc-right">
+        <div class="result-box" id="resultBox">
+          <div class="result-label">Ориентировочная стоимость</div>
+          <div class="result-price" id="rPrice"></div>
+          <div class="result-sub">Расчётная оценка · уточняется при запросе КП</div>
+          <div class="result-rows" id="rRows"></div>
+          <div class="result-note">Расчёт ориентировочный. Точная стоимость зависит от актуальных тарифов, сезона и наличия транспорта.</div>
+          <a href="contact.html" class="result-cta">ЗАПРОСИТЬ ТОЧНОЕ КП →</a>
+        </div>
+
+        <div class="info-cards">
+          <div class="info-card">
+            <h4>Транзитное время</h4>
+            <p>Ориентировочные сроки по основным маршрутам:</p>
+            <div class="transit-mini">
+              <div class="tm-item"><div class="tm-days">5–7</div><div class="tm-route">Стамбул→Москва</div></div>
+              <div class="tm-item"><div class="tm-days">2–4</div><div class="tm-route">Рига→Москва</div></div>
+              <div class="tm-item"><div class="tm-days">14–18</div><div class="tm-route">Стамбул→Бишкек</div></div>
+            </div>
+          </div>
+          <div class="info-card">
+            <h4>Что включено в стоимость</h4>
+            <p>Забор груза у поставщика · Международная перевозка · Таможенное оформление · Доставка до склада · Документация</p>
+          </div>
+          <div class="info-card">
+            <h4>Нужен точный расчёт?</h4>
+            <p>Свяжитесь с нами — ответим в течение 24 часов с детальным КП под ваш груз и маршрут.</p>
+            <a href="contact.html" class="btn btn-blue" style="margin-top:12px;display:inline-block;font-size:0.85rem;padding:10px 20px;">Написать нам</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="footer-logo">CENTAUR <span>-LOGISTIC</span></div>
+  <p>© 2025 ООО Кентавр Логистика · <a href="mailto:v.fomichyov@centaur-log.ru">v.fomichyov@centaur-log.ru</a></p>
+  <p>Стамбул · Москва · <a href="https://kentavr-log.ru">kentavr-log.ru</a></p>
+</footer>
+
+<script>
+const rates = { auto:{base:800,kg:1.1,m3:100}, avia:{base:1200,kg:4.2,m3:0}, sea:{base:600,kg:0.7,m3:70} };
+const dist = {
+  istanbul:{moscow:1.0,spb:1.15,ekb:1.5,nsk:2.1,almaty:1.9,tashkent:2.2,bishkek:2.3},
+  riga:{moscow:0.5,spb:0.45,ekb:1.1,nsk:1.8,almaty:2.0,tashkent:2.4,bishkek:2.5},
+  vilnius:{moscow:0.55,spb:0.5,ekb:1.15,nsk:1.85,almaty:2.1,tashkent:2.5,bishkek:2.6},
+  warsaw:{moscow:0.7,spb:0.75,ekb:1.3,nsk:2.0,almaty:2.2,tashkent:2.6,bishkek:2.7},
+  berlin:{moscow:0.85,spb:0.9,ekb:1.4,nsk:2.1,almaty:2.3,tashkent:2.7,bishkek:2.8},
+  milan:{moscow:1.1,spb:1.2,ekb:1.6,nsk:2.3,almaty:2.5,tashkent:2.9,bishkek:3.0},
+  madrid:{moscow:1.2,spb:1.3,ekb:1.7,nsk:2.4,almaty:2.6,tashkent:3.0,bishkek:3.1},
+  paris:{moscow:0.95,spb:1.0,ekb:1.5,nsk:2.2,almaty:2.4,tashkent:2.8,bishkek:2.9},
+  beijing:{moscow:1.8,spb:1.9,ekb:1.4,nsk:1.0,almaty:1.2,tashkent:1.5,bishkek:1.3},
+  usa:{moscow:2.5,spb:2.6,ekb:2.8,nsk:3.0,almaty:3.2,tashkent:3.5,bishkek:3.6}
+};
+const cargo = {general:1.0,chemical:1.35,instrument:1.2,polymer:1.05,parts:1.1};
+const transit = {
+  auto:{istanbul:'5–7',riga:'2–4',vilnius:'3–5',warsaw:'4–6',berlin:'5–7',milan:'6–8',madrid:'8–10',paris:'6–8',beijing:'25–35',usa:'—'},
+  avia:{istanbul:'2',riga:'2',vilnius:'2',warsaw:'2',berlin:'2',milan:'2',madrid:'2',paris:'2',beijing:'3–4',usa:'3–5'},
+  sea:{istanbul:'18–25',riga:'14–20',vilnius:'14–20',warsaw:'16–22',berlin:'18–25',milan:'20–28',madrid:'22–30',paris:'20–28',beijing:'35–45',usa:'40–55'}
+};
+const oNames={istanbul:'Стамбул',riga:'Рига',vilnius:'Вильнюс',warsaw:'Варшава',berlin:'Берлин',milan:'Милан',madrid:'Мадрид',paris:'Париж',beijing:'Китай',usa:'США'};
+const dNames={moscow:'Москва',spb:'Санкт-Петербург',ekb:'Екатеринбург',nsk:'Новосибирск',almaty:'Алматы',tashkent:'Ташкент',bishkek:'Бишкек'};
+const mNames={auto:'Автомобиль',avia:'Авиа',sea:'Море + Авто'};
+
+function calculate() {
+  const o=document.getElementById('origin').value;
+  const d=document.getElementById('destination').value;
+  const m=document.getElementById('mode').value;
+  const w=parseFloat(document.getElementById('weight').value)||0;
+  const v=parseFloat(document.getElementById('volume').value)||0;
+  const c=document.getElementById('cargo').value;
+  if(!o||!d){alert('Выберите откуда и куда');return;}
+  if(!w&&!v){alert('Введите вес или объём');return;}
+  const r=rates[m];
+  const mul=(dist[o]||{})[d]||1.0;
+  const cs=cargo[c]||1.0;
+  const volFactor={auto:250,avia:333,sea:1000};
+  const vw=v*volFactor[m];
+  const cw=Math.max(w,vw);
+  let cost=r.base+(cw*r.kg);
+  if(v>0&&m!=='avia') cost+=v*r.m3;
+  cost*=mul*cs;
+  cost=Math.round(cost/50)*50;
+  const t=(transit[m][o]||'?');
+  document.getElementById('rPrice').textContent='€'+cost.toLocaleString();
+  document.getElementById('rRows').innerHTML=`
+    <div class="result-row"><span class="k">Маршрут</span><span class="v">${oNames[o]||o} → ${dNames[d]||d}</span></div>
+    <div class="result-row"><span class="k">Способ</span><span class="v">${mNames[m]}</span></div>
+    <div class="result-row"><span class="k">Расч. вес</span><span class="v">${Math.round(cw)} кг</span></div>
+    <div class="result-row"><span class="k">Транзит</span><span class="v">${t} дн.</span></div>
+    <div class="result-row"><span class="k">Надбавка</span><span class="v">×${cs.toFixed(2)}</span></div>
+  `;
+  const box=document.getElementById('resultBox');
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+</script>
+</body>
+</html>

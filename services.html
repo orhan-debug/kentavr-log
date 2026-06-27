@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Услуги — Centaur-Logistic</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero { background: var(--gray); padding: 80px 48px 64px; border-bottom: 3px solid var(--blue); }
+.page-hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); margin-bottom: 16px; }
+.page-hero p { font-size: 1.1rem; color: var(--text-mid); max-width: 600px; }
+
+.services-main { background: var(--white); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+.svc-card { border: 2px solid var(--gray-mid); padding: 40px 32px; transition: all 0.2s; }
+.svc-card:hover { border-color: var(--blue); box-shadow: 0 8px 32px rgba(0,102,255,0.1); transform: translateY(-4px); }
+.svc-icon { font-size: 2.4rem; margin-bottom: 20px; }
+.svc-card h3 { font-size: 1.3rem; margin-bottom: 12px; color: var(--text); }
+.svc-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px; }
+.svc-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.svc-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; background: var(--blue-light); color: var(--blue); }
+
+.process { background: var(--gray); }
+.process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; counter-reset: step; }
+.process-step { padding: 40px 32px; border-right: 2px solid var(--gray-mid); position: relative; }
+.process-step:last-child { border-right: none; }
+.step-num { font-family: 'Oswald', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--blue); opacity: 0.15; line-height: 1; margin-bottom: 8px; }
+.step-title { font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: 0.04em; }
+.step-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.6; }
+
+.routes { background: var(--white); }
+.routes-table { width: 100%; border-collapse: collapse; }
+.routes-table th { background: var(--blue); color: var(--white); font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 0.08em; padding: 16px 20px; text-align: left; }
+.routes-table td { padding: 16px 20px; border-bottom: 1px solid var(--gray-mid); font-size: 0.9rem; }
+.routes-table tr:hover td { background: var(--blue-light); }
+.route-badge { display: inline-block; padding: 3px 10px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; }
+.badge-auto { background: var(--blue-light); color: var(--blue); }
+.badge-avia { background: #FFF3E0; color: #E65100; }
+.badge-sea { background: var(--green-light); color: var(--green-dark); }
+
+@media (max-width: 900px) {
+  .page-hero { padding: 80px 20px 48px; }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .routes-table { font-size: 0.8rem; }
+  .routes-table td, .routes-table th { padding: 12px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">CENTAUR <span>-LOGISTIC</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="services.html" class="active">Услуги</a></li>
+    <li><a href="calculator.html">Калькулятор</a></li>
+    <li><a href="documents.html">Документы</a></li>
+    <li><a href="contact.html">Контакты</a></li>
+  </ul>
+  <a href="contact.html" class="btn nav-cta">Запросить КП</a>
+</nav>
+
+<div class="page">
+
+<div class="page-hero">
+  <div class="inner">
+    <div class="section-tag">Что мы делаем</div>
+    <h1>Полный цикл<br>международной логистики</h1>
+    <p>От поиска поставщика до доставки на склад. Собственные структуры в Турции и ЕС — минимальная комиссия, прозрачная цена.</p>
+  </div>
+</div>
+
+<section class="services-main">
+  <div class="inner">
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-icon">🔍</div>
+        <h3>Поиск и подтверждение поставщика</h3>
+        <p>Проверяем наличие, экспортные ограничения. Гарантированный доступ к продукции ЕС и США через собственные каналы.</p>
+        <div class="svc-tags"><span class="svc-tag">ЕС</span><span class="svc-tag">США</span><span class="svc-tag">Китай</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">📋</div>
+        <h3>Прямые контракты без посредников</h3>
+        <p>Собственные структуры в ЕС и Турции — минимальная комиссия, прозрачная цена. Договор в РФ + работа через зарубежную структуру.</p>
+        <div class="svc-tags"><span class="svc-tag">Контракты</span><span class="svc-tag">ВЭД</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🗺️</div>
+        <h3>Оптимизация логистики и маршрута</h3>
+        <p>Конкурентные ставки, консолидация грузов, комбинированные маршруты. Минимальная себестоимость при максимальной надёжности.</p>
+        <div class="svc-tags"><span class="svc-tag">FTL</span><span class="svc-tag">LTL</span><span class="svc-tag">Авиа</span><span class="svc-tag">Море</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">⏱️</div>
+        <h3>Контроль сроков поставки</h3>
+        <p>Реалистичный график, мониторинг этапов, альтернативный маршрут при форс-мажоре. Вы всегда знаете где ваш груз.</p>
+        <div class="svc-tags"><span class="svc-tag">Трекинг</span><span class="svc-tag">Отчётность</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">📦</div>
+        <h3>Таможенное оформление</h3>
+        <p>Полный пакет ВЭД-документации. Декларирование, расчёт пошлин, работа с любыми кодами ТН ВЭД. Опыт с промышленными товарами.</p>
+        <div class="svc-tags"><span class="svc-tag">ТН ВЭД</span><span class="svc-tag">ЕАЭС</span><span class="svc-tag">Декларации</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🔗</div>
+        <h3>Постоянный канал поставки</h3>
+        <p>Системная выстроенная модель — не разовая сделка. Долгосрочная стабильность закупки для вашего предприятия.</p>
+        <div class="svc-tags"><span class="svc-tag">Долгосрок</span><span class="svc-tag">Партнёрство</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="inner">
+    <div class="section-tag">Как мы работаем</div>
+    <h2>Процесс <span class="accent">шаг за шагом</span></h2>
+    <div class="process-steps">
+      <div class="process-step"><div class="step-num">01</div><div class="step-title">Запрос КП</div><div class="step-desc">Вы описываете товар и маршрут — мы отвечаем в течение 24 часов.</div></div>
+      <div class="process-step"><div class="step-num">02</div><div class="step-title">Поиск поставщика</div><div class="step-desc">Проверяем наличие, экспортные ограничения, согласуем цену.</div></div>
+      <div class="process-step"><div class="step-num">03</div><div class="step-title">Контракт</div><div class="step-desc">Оформляем договор в РФ + международную структуру сделки.</div></div>
+      <div class="process-step"><div class="step-num">04</div><div class="step-title">Отгрузка</div><div class="step-desc">Организуем логистику, таможню, документацию — под ключ.</div></div>
+      <div class="process-step"><div class="step-num">05</div><div class="step-title">Доставка</div><div class="step-desc">Мониторинг на каждом этапе. Груз на вашем складе в срок.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="routes">
+  <div class="inner">
+    <div class="section-tag">Маршруты</div>
+    <h2>Популярные <span class="accent">направления</span></h2>
+    <table class="routes-table">
+      <thead>
+        <tr><th>Откуда</th><th>Куда</th><th>Способ</th><th>Транзит</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Стамбул, Турция</td><td>Москва, Россия</td><td><span class="route-badge badge-auto">Авто</span></td><td>5–7 дней</td></tr>
+        <tr><td>Рига, Латвия</td><td>Москва / Екатеринбург</td><td><span class="route-badge badge-auto">Авто</span></td><td>2–4 дня</td></tr>
+        <tr><td>Стамбул, Турция</td><td>Бишкек, Кыргызстан</td><td><span class="route-badge badge-auto">Авто</span></td><td>14–18 дней</td></tr>
+        <tr><td>ЕС (любой город)</td><td>Алматы / Ташкент</td><td><span class="route-badge badge-auto">Авто</span></td><td>12–20 дней</td></tr>
+        <tr><td>Любая точка ЕС/США</td><td>Россия / СНГ</td><td><span class="route-badge badge-avia">Авиа</span></td><td>2–5 дней</td></tr>
+        <tr><td>Китай</td><td>Россия / СНГ</td><td><span class="route-badge badge-sea">Море+Авто</span></td><td>25–40 дней</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="footer-logo">CENTAUR <span>-LOGISTIC</span></div>
+  <p>© 2025 ООО Кентавр Логистика · <a href="mailto:v.fomichyov@centaur-log.ru">v.fomichyov@centaur-log.ru</a></p>
+  <p>Стамбул · Москва · <a href="https://kentavr-log.ru">kentavr-log.ru</a></p>
+</footer>
+</body>
+</html>

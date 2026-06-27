@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue: #0066FF;
+  --blue-dark: #0052CC;
+  --blue-light: #E6F0FF;
+  --green: #00CC44;
+  --green-dark: #00A336;
+  --green-light: #E6FFF0;
+  --white: #FFFFFF;
+  --gray: #F5F7FA;
+  --gray-mid: #E8ECF2;
+  --text: #0A0F1E;
+  --text-mid: #4A5568;
+  --text-light: #8A97AA;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 68px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--blue);
+}
+.nav-logo { font-family: 'Oswald', sans-serif; font-size: 1.4rem; font-weight: 700; letter-spacing: 0.04em; color: var(--text); text-decoration: none; }
+.nav-logo span { color: var(--green); }
+.nav-links { display: flex; gap: 8px; list-style: none; }
+.nav-links a {
+  color: var(--text-mid); text-decoration: none; font-size: 0.9rem; font-weight: 600;
+  letter-spacing: 0.03em; padding: 8px 16px; border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { background: var(--blue-light); color: var(--blue); }
+.nav-cta {
+  background: var(--blue); color: var(--white);
+  font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.9rem;
+  letter-spacing: 0.06em; padding: 10px 24px; border: none; cursor: pointer;
+  text-decoration: none; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--blue-dark); }
+
+/* ── PAGE WRAPPER ── */
+.page { padding-top: 68px; }
+
+/* ── SECTION BASE ── */
+section { padding: 80px 48px; }
+.inner { max-width: 1200px; margin: 0 auto; }
+.section-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 14px;
+}
+.section-tag::before { content: ''; display: block; width: 28px; height: 3px; background: var(--blue); border-radius: 2px; }
+h1 { font-family: 'Oswald', sans-serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 700; line-height: 1.0; letter-spacing: 0.01em; }
+h2 { font-family: 'Oswald', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: 0.02em; margin-bottom: 48px; }
+h2 .accent { color: var(--blue); }
+h3 { font-family: 'Oswald', sans-serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.03em; }
+
+/* ── BUTTONS ── */
+.btn { display: inline-block; font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: 0.06em; padding: 14px 32px; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+.btn-blue { background: var(--blue); color: var(--white); }
+.btn-blue:hover { background: var(--blue-dark); transform: translateY(-2px); }
+.btn-green { background: var(--green); color: var(--white); }
+.btn-green:hover { background: var(--green-dark); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--blue); border: 2px solid var(--blue); }
+.btn-outline:hover { background: var(--blue); color: var(--white); }
+
+/* ── CARDS ── */
+.card { background: var(--white); border: 2px solid var(--gray-mid); padding: 32px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+.card:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,102,255,0.1); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--text); color: rgba(255,255,255,0.6);
+  padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+}
+.footer-logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--white); }
+.footer-logo span { color: var(--green); }
+footer p { font-size: 0.8rem; }
+footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+footer a:hover { color: var(--green); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  section { padding: 60px 20px; }
+  footer { padding: 32px 20px; flex-direction: column; }
+}
